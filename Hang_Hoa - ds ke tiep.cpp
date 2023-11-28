@@ -38,7 +38,7 @@ void nhapds(List &L){
 }
 
 void hienthi(List L){
-	cout<<setw(4)<<"STT";
+	cout<<"STT";
 	cout<<setw(10)<<"MA HANG";
 	cout<<setw(11)<<"TEN HANG";
 	cout<<setw(12)<<"DON VI TINH";
@@ -47,7 +47,7 @@ void hienthi(List L){
 	cout<<setw(15)<<"THANH TIEN";
 	cout<<endl;
 	for(int i=0; i<L.count; i++){
-		cout<<setw(4)<<i+1;
+		cout<<i+1;
 		cout<<setw(10)<<L.e[i].mahang;
 		cout<<setw(11)<<L.e[i].tenhang;
 		cout<<setw(12)<<L.e[i].dvt;

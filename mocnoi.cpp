@@ -21,16 +21,16 @@ void nhap(sinhvien &x){
 } 
 
 void nhapds(tro &L){
-	tro P,Q;
-	sinhvien x;
-	int d = 0;
+	tro Q = L;
 	L=NULL;
-	do{
-		cout<<"Nhap thong tin sinh vien "<<d+1<<"\n";
+	for(int i=0; i<3; i++){
+		cout<<"Nhap thong tin sinh vien thu "<<i+1<<": \n";
+		sinhvien x;
 		nhap(x);
-		P = new Node;
+		tro P = new Node;
 		P->data = x;
 		P->next = NULL;
+		
 		if(L==NULL){
 			L=P;
 		}
@@ -38,9 +38,7 @@ void nhapds(tro &L){
 			Q->next = P;
 		}
 		Q=P;
-		d++;
 	}
-	while(d<3);
 }
 
 void hienthi(tro &L){
@@ -48,24 +46,22 @@ void hienthi(tro &L){
 	cout<<setw(15)<<"MA";
 	cout<<setw(27)<<"HO TEN";
 	cout<<setw(33)<<"DIEM"<<endl;
-	if(L==NULL){
-		cout<<"ds rong";
-		return;
-	}
+	
 	tro Q=L;
 	int i=0;
-	while(Q != NULL){
-		sinhvien x = Q->data;
-		cout<<i+1;
-		cout<<setw(15)<<x.id;
-		cout<<setw(27)<<x.name;
-		cout<<setw(33)<<x.gpa<<endl;
-		Q=Q->next;
-		i++;
+		while(Q != NULL){
+			sinhvien x = Q->data;
+			cout<<1+i;
+			cout<<setw(15)<<x.id;
+			cout<<setw(27)<<x.name;
+			cout<<setw(33)<<x.gpa<<endl;
+			Q=Q->next;
+			i++;
+		}
 	}
-}
 
-tro timvt(int vt, tro L){
+
+tro timvt(int vt, tro &L){
 	int dem=0; 
 	tro Q = L;
 	if(vt==0) return L;
@@ -78,18 +74,44 @@ tro timvt(int vt, tro L){
 	}
 }
 
-//Tính trung binh GPA - dem va in ra sv co GPA  > diem tb GPA
-void(tro &L){
+void display_vt(tro &L){
+	cout<<"\nThong tin sinh vien o vi tri 2 la: \n";
+		cout<<"STT";
+		cout<<setw(15)<<"MA";
+		cout<<setw(27)<<"HO TEN";
+		cout<<setw(33)<<"DIEM"<<endl;
+		
+		cout<<"1";
+		cout<<setw(15)<<timvt(2,L)->data.id;
+		cout<<setw(27)<<timvt(2,L)->data.name;
+		cout<<setw(33)<<timvt(2,L)->data.gpa<<endl;
+}
 	
+
+//Tính trung binh GPA - dem va in ra sv co GPA  > diem tb GPA
+void tb_GPA(tro &L){
+	tro Q=L;
+	int sum=0;
+	while(Q != NULL){
+		sinhvien x = Q->data;
+		sum += x.gpa;
+		Q=Q->next;
+	}
+	cout<<"\nTong gpa cua all sinh vien la: "<<sum<<endl;
+	
+	float tb_GPA = (float)sum/3;
+	cout<<"Trung binh gpa la: "<<tb_GPA<<endl;
+		
 }
 
-//chen thong tin cua 1 sv vao vi tri k
+
+//chen thong tin cua 1 sv vao sau vi tri k
 int add(tro &L, int k, sinhvien&x){
 	if(k>0 && k<=4){
 		tro P = new Node;
 		P->data = x;
 		tro Q=L;
-		int i=1;
+		int i=0;
 		while(Q != NULL){
 			if(i==k) break;
 			i++;
@@ -102,11 +124,11 @@ int add(tro &L, int k, sinhvien&x){
 	else return 0;
 }
 
-int chenptu1(tro &L){
+void chenptu2(tro &L){
 	sinhvien y;
 	cout<<"\nNhap thong tin sinh vien can chen: \n";
 	nhap(y);
-	if(add(L, 1, y)){
+	if(add(L, 2, y)){
 		cout<<"Chen thanh cong !\n";
 		cout<<"Danh sach sau khi chen la: \n";
 		hienthi(L);
@@ -145,7 +167,7 @@ void xoamax(tro &L){
 }
 
 //sx danh sach co diem GPA giam dan
-void sapxep(tro &L){
+/* void sapxep(tro &L){
 	if(L==NULL){
 		cout<<"danh sach rong";
 	}
@@ -166,7 +188,7 @@ void sapxep(tro &L){
 		Q = Q->next;
 		}
 	}
-}
+} */
 
 /* void sort(int n){
 	for(int i=0; i<n; i++){
@@ -174,8 +196,8 @@ void sapxep(tro &L){
 	}
 } */
 void sort(tro &L){
-	for(tro Q=L; Q->next != NULL; Q=Q->next){
-		for(tro P=Q->next; P->next !=NULL; P=P->next){
+	for(tro Q=L; Q != NULL; Q=Q->next){
+		for(tro P=Q->next; P !=NULL; P=P->next){
 			if(Q->data.gpa < P->data.gpa){
 				sinhvien x = Q->data;
 				Q->data = P->data;
@@ -216,20 +238,22 @@ int main(){
 	tro L;
 	nhapds(L);
 	hienthi(L); 
-	// vi tri thu 2 nghia la vi tri co i=2 va co STT = 3
-	cout<<"\nThong tin ten cua sinh vien can tim la: "<<timvt(2,L)->data.name<<"\n";
-	chenptu1(L);
+	// vi tri 2 nghia la vi tri co i=2 va co STT = 3
+	display_vt(L);
+		
+	tb_GPA(L);
+	chenptu2(L);
 	
 	cout<<"\nDanh sach sau khi xoa sinh vien co GPA max la: \n";
 	xoamax(L);
 	hienthi(L);
 	
-	sapxep(L);
-	cout<<"\nSap xep sinh vien co GPA giam dan CACH 1 la:  \n";
-	hienthi(L);
+//	sapxep(L);
+//	cout<<"\nSap xep sinh vien co GPA giam dan CACH 1 la:  \n";
+//	hienthi(L);
 	
 	sort(L);
-	cout<<"\nSap xep sinh vien co GPA giam dan CACH 2 la:  \n";
+	cout<<"\nSap xep sinh vien co GPA giam dan la:  \n";
 	hienthi(L);
 	
 	chends(L);
