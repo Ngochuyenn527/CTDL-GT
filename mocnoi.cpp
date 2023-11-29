@@ -86,8 +86,32 @@ void display_vt(tro &L){
 		cout<<setw(27)<<timvt(2,L)->data.name;
 		cout<<setw(33)<<timvt(2,L)->data.gpa<<endl;
 }
-	
 
+/*	
+void display_gtnam(tro &l){
+	cout<<endl;
+	cout<<"Danh sach giao vien nam la: \n";
+	cout<<"STT";
+	cout<<setw(15)<<"HOTEN";
+	cout<<setw(25)<<"GIOITINH";
+	cout<<setw(33)<<"NAMSINH"<<endl;
+	
+	tro q=l;
+	int i=0;
+	while(q != NULL){
+		giaovien x = q->infor;
+		if(q->infor.gioitinh == "nam"){
+			cout<<1+i;
+			cout<<setw(15)<<x.hoten;
+			cout<<setw(25)<<x.gioitinh;
+			cout<<setw(33)<<x.namsinh<<endl;
+		}
+		q=q->next;
+		i++;
+	}
+}
+
+*/
 //Tính trung binh GPA - dem va in ra sv co GPA  > diem tb GPA
 void tb_GPA(tro &L){
 	tro Q=L;
@@ -113,7 +137,7 @@ int add(tro &L, int k, sinhvien&x){
 		tro Q=L;
 		int i=0;
 		while(Q != NULL){
-			if(i==k) break;
+			if(i==k-1) break;
 			i++;
 			Q=Q->next;
 		}
@@ -148,6 +172,8 @@ tro timmax(tro L){
 	}
 	return Q; // Q la max 
 }
+
+
 
 void xoamax(tro &L){
 	tro P,Q;
@@ -227,14 +253,13 @@ void chends(tro &L){
 			Q=Q->next;
 		}
 		H->next = P->next;
-		P->next = H;
+		P->next = H; // [L]  [P] H [Q]
 	}
 }
 
 
 
 int main(){
-	sinhvien x; 
 	tro L;
 	nhapds(L);
 	hienthi(L); 
