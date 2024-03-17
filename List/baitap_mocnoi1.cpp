@@ -93,6 +93,21 @@ void display_gtnam(tro &l){
 		i++;
 	}
 }
+//co 2 cach chen ptu moi
+/* cach 1: nhap tu ban phim
+		giaovien h;
+		cout<<"Nhap thong tin can chen: \n";
+		input(h);
+		tro P = new node;
+		P->infor = h;
+*/
+
+/*cach 2: creat 1 ptu moi luon trong source code (P) - khuyen khich dung cach nay vi bai thi cuoi ki se la code tren giay
+		tro P= new node;
+		strcpy(P->infor.hoten, "Ngoc Huyenn");
+		P->infor.gioitinh = "nu";
+		P->infor.namsinh = 77777;
+*/
 void add_vt(tro &L, int k){
 	if(k>0 && k<=4){
 		giaovien h;
@@ -160,9 +175,9 @@ void add_beforegv(tro &L){
 	tro Q=L;
 
 	tro P= new node;
-	strcpy(P->infor.hoten, "duong");
-	P->infor.gioitinh = "nam";
-	P->infor.namsinh = 7777;
+	strcpy(P->infor.hoten, "Ngoc Huyenn");
+	P->infor.gioitinh = "nu";
+	P->infor.namsinh = 77777;
 
 	
 	if(k==1){ //addfirst
@@ -203,10 +218,10 @@ void add_aftergv(tro &L){
 	}
 	
 	tro Q=L;
-	giaovien x;
-	input(x);
 	tro P= new node;
-	P->infor = x;
+	strcpy(P->infor.hoten, "Ngoc Huyenn");
+	P->infor.gioitinh = "nu";
+	P->infor.namsinh = 77777;
 	
 		int i=0;
 		tro H;

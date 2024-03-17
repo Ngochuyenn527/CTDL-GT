@@ -61,6 +61,22 @@ void display(tro &L){
 	}
 }
 
+//co 2 cach chen ptu moi
+/* cach 1: nhap tu ban phim
+		Hocphan h;
+		cout<<"Nhap thong tin can chen: \n";
+		input(h);
+		tro P = new Node;
+		P->infor = h;
+*/
+
+/*cach 2: creat 1 ptu moi luon trong source code (P) - khuyen khich dung cach nay vi bai thi cuoi ki se la code tren giay
+		tro P = new Node;
+		P->infor.mahp = 77;
+		strcpy(P->infor.tenhp, "Giai Tich"); // cach gán cho kieu char
+		P->infor.stc = 7
+*/
+
 //add 
 void addfirst(tro &L){
 	Hocphan h;
